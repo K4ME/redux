@@ -4,10 +4,28 @@ const INITIAL_STATE = {
   items: [],
 };
 
-const cart = (state, action) => {
-  console.log(state, action);
+const cart = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case "ADD_PRODUCT_TO_CART": {
+      const { product } = action.payload;
 
-  return INITIAL_STATE;
+      return {
+        ...state,
+        items: [
+          ...state.items,
+          {
+            product,
+            quantity: 1,
+          },
+        ],
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+
+  return state;
 };
 
 export default cart;
