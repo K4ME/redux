@@ -1,5 +1,9 @@
-function cart() {
-  return []
-}
+const INITIAL_STATE = {
+  items: [],
+};
 
-export default cart
+const cart = () => {
+  return INITIAL_STATE;
+};
+
+export default cart;
