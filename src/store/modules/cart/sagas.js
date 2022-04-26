@@ -1,6 +1,16 @@
-import { all, takeLatest } from "redux-saga/effects";
+import { all, takeLatest, select } from "redux-saga/effects";
 
-function checkProductStock() {
+function* checkProductStock({ payload }) {
+  const { product } = payload;
+
+  const currentQuantity = yield select((state) => {
+    return (
+      state.cart.items.find((item) => item.product.id === product.id)
+        ?.quantity ?? 0
+    );
+  });
+
+  console.log(currentQuantity);
   console.log("Adicionou produto no carrinho");
 }
 
